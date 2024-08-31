@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="../js/mui.min.js"></script>
+  <link rel="stylesheet" href="../css/all.min.css">
+  <title>Évaluez-nous</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      color: #424242;
+    }
+
+    .star-rating {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      font-size: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .star-rating input {
+      display: none;
+    }
+
+    .star-rating label {
+      font-size: 40px;
+      color: #e0e0e0;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .star-rating label:before {
+      content: '★';
+    }
+
+    .star-rating input:checked~label {
+      color: #ffc107;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover~label {
+      color: #ffdb58;
+    }
+
+    button {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mui-container-fluid">
+    <h1 class="mui--text-headline mui--text-center">Évaluez votre expérience chez ${business}</h1>
+    <form id="ratingForm" class="mui-form">
+      <div class="star-rating mui--text-center">
+        <input type="radio" id="star5" name="rating" value="5" required>
+        <label for="star5"></label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4"></label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3"></label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2"></label>
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1"></label>
+      </div>
+      <div class="mui--text-center">
+        <button type="submit" class="mui-btn mui-btn--primary mui-btn--raised">Envoyer</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Obtenir le nom de l'entreprise à partir des paramètres de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const businessName = urlParams.get('business') || 'Notre Entreprise';
+
+    // Mettre à jour l'élément h1 avec le nom de l'entreprise
+    document.querySelector('h1').textContent = `Évaluez votre expérience chez ${businessName}`;
+
+    document.getElementById('ratingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const rating = document.querySelector('input[name="rating"]:checked').value;
+      if (rating > 3) {
+        const reviewLink = urlParams.get('url');
+        window.location.href = `${reviewLink}`;
+      } else {
+        window.location.href = `rate-me-form.html?business='${businessName}'`;
+      }
+    });
+  </script>
+</body>
+
+</html>

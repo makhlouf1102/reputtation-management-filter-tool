@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="../js/mui.min.js"></script>
+  <link rel="stylesheet" href="../css/all.min.css">
+  <title>Customer Feedback Form</title>
+</head>
+
+<body>
+  <div class="mui-container">
+    <h2></h2>
+    <h1 class="mui--text-center">We are sorry to hear that you had a bad experience with <strong id="businessName">${businessName}</strong> <br> Please let us know how we can improve our service.</h1>
+    <form class="mui-form" action="#" method="post">
+      <div class="mui-textfield mui-textfield--float-label">
+        <input type="text" id="firstName" name="firstName" required>
+        <label for="firstName">First Name</label>
+      </div>
+
+      <div class="mui-textfield mui-textfield--float-label">
+        <input type="text" id="lastName" name="lastName" required>
+        <label for="lastName">Last Name</label>
+      </div>
+
+      <div class="mui-textfield mui-textfield--float-label">
+        <textarea id="comments" name="comments" rows="4" required></textarea>
+        <label for="comments">Comments</label>
+      </div>
+      <button type="submit" class="mui-btn mui-btn--raised mui-btn--primary" onclick="redirectToThankYou()">Submit Feedback</button>
+
+      <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const businessName = urlParams.get('business') || 'Our Business';
+        document.getElementById('businessName').textContent = businessName;
+
+        function redirectToThankYou() {
+          event.preventDefault();
+          window.location.href = 'thank-you.html';
+        }
+      </script>
+    </form>
+  </div>
+</body>
+
+</html>
