@@ -12,6 +12,9 @@
 <body class="min-h-screen bg-base-200 flex items-center justify-center">
   <div class="card w-96 bg-base-100 shadow-xl">
     <div class="card-body">
+      <div class="flex justify-center mb-4">
+        <img src="img/logo.png" alt="Company Logo" class="h-12">
+      </div>
       <h2 class="card-title mb-4">Google Review Link Generator</h2>
       <form id="reviewForm" class="space-y-4">
         <div class="form-control">
@@ -39,8 +42,12 @@
       </form>
       <div id="result" class="mt-4"></div>
       <button id="copyButton" class="btn btn-secondary w-full mt-2" style="display: none;">Copy Link</button>
+      <div class="mt-4 text-center text-sm text-gray-600">
+        <p>If you encounter any issues, please contact us at <a href="mailto:makhlouf.hen@gmail.com" class="text-blue-500 hover:underline">makhlouf.hen@gmail.com</a></p>
+      </div>
     </div>
   </div>
+
 
   <script>
     document.getElementById('reviewForm').addEventListener('submit', function(e) {
