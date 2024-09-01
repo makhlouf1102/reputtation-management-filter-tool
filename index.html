@@ -55,7 +55,8 @@
       const businessName = encodeURIComponent(document.getElementById('businessName').value);
       const reviewLink = encodeURIComponent(document.getElementById('reviewLink').value);
       const language = document.getElementById('language').value;
-      const generatedLink = `http://127.0.0.1:5500/${language}/rate-me.html?business=${businessName}&url=${reviewLink}`;
+      const host = window.location.host;
+      const generatedLink = `http://${host}/${language}/rate-me.html?business=${businessName}&url=${reviewLink}`;
       document.getElementById('result').innerHTML = `Generated Link: <a href="${generatedLink}" target="_blank">${generatedLink}</a>`;
       document.getElementById('copyButton').style.display = 'inline-block';
     });
