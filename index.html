@@ -42,12 +42,33 @@
       </form>
       <div id="result" class="mt-4"></div>
       <button id="copyButton" class="btn btn-secondary w-full mt-2" style="display: none;">Copy Link</button>
+      <button id="howToUseButton" class="btn btn-info w-full mt-2">How to Use</button>
       <div class="mt-4 text-center text-sm text-gray-600">
         <p>If you encounter any issues, please contact us at <a href="mailto:makhlouf.hen@gmail.com" class="text-blue-500 hover:underline">makhlouf.hen@gmail.com</a></p>
       </div>
     </div>
   </div>
 
+  <!-- Modal Structure -->
+  <div id="howToUseModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center" style="display: flex;">
+    <div class="modal-box bg-white p-6 rounded-lg shadow-lg">
+      <h3 class="font-bold text-lg">How to Use the Tool</h3>
+      <ul class="list-decimal list-inside mt-4 space-y-2">
+        <li>Enter your business name in the "Business Name" field.</li>
+        <li>Enter your Google Review URL in the "Google Review Link" field.</li>
+        <li>Select the desired language from the "Language" dropdown.</li>
+        <li>Click the "Generate Link" button to create your custom review link.</li>
+        <li>Copy the generated link using the "Copy Link" button.</li>
+      </ul>
+      <!-- Add GIF here -->
+      <div class="mt-4">
+        <img src="gif/how-to-use.gif" alt="How to Use the Tool" class="w-full rounded-lg">
+      </div>
+      <div class="modal-action mt-4">
+        <button id="closeModalButton" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     document.getElementById('reviewForm').addEventListener('submit', function(e) {
@@ -58,7 +79,7 @@
       const host = window.location.host; //get the full url
       const protocol = window.location.protocol; //get the protocol
       const pathname = window.location.pathname; //get the pathname
-      const generatedLink = `${window.location}/${language}/rate-me.html?business=${businessName}&url=${reviewLink}`;
+      const generatedLink = `${window.location}${language}/rate-me.html?business=${businessName}&url=${reviewLink}`;
       document.getElementById('result').innerHTML = `Generated Link: <a href="${generatedLink}" target="_blank">${generatedLink}</a>`;
       document.getElementById('copyButton').style.display = 'inline-block';
     });
@@ -71,6 +92,21 @@
       }).catch(function(err) {
         console.error('Failed to copy link: ', err);
       });
+    });
+
+    // Modal JavaScript
+    document.getElementById('howToUseButton').addEventListener('click', function() {
+      document.getElementById('howToUseModal').style.display = 'flex';
+    });
+
+    document.getElementById('closeModalButton').addEventListener('click', function() {
+      document.getElementById('howToUseModal').style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+      if (event.target == document.getElementById('howToUseModal')) {
+        document.getElementById('howToUseModal').style.display = 'none';
+      }
     });
   </script>
 </body>
