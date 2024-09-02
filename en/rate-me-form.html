@@ -13,7 +13,7 @@
 <body>
   <div class="mui-container">
     <h2></h2>
-    <h1 class="mui--text-center">We are sorry to hear that you had a bad experience with <strong id="businessName">${businessName}</strong> <br> Please let us know how we can improve our service.</h1>
+    <h1 class="mui--text-center">We are sorry to hear that you had a bad experience with <strong id="businessName">${businessName}</strong> <br>Thank you for your feedback, please leave a comment about your experience.</h1>
     <form class="mui-form" action="#" method="post">
       <div class="mui-textfield mui-textfield--float-label">
         <input type="text" id="firstName" name="firstName" required>
@@ -35,6 +35,12 @@
         const urlParams = new URLSearchParams(window.location.search);
         const businessName = urlParams.get('business') || 'Our Business';
         document.getElementById('businessName').textContent = businessName;
+        const businessType = urlParams.get('type') || 'business';
+        if (businessType === 'person') {
+          document.getElementById('businessType').textContent = 'Thank you for your feedback, please let me know how how I can improve my services.';
+        } else {
+          document.getElementById('businessType').textContent = 'Thank you for your feedback, please let us know how we can improve our services.';
+        }
 
         function redirectToThankYou() {
           event.preventDefault();

@@ -20,10 +20,19 @@
         <img src="img/logo.png" alt="Company Logo" class="h-12">
       </div>
       <h2 class="card-title mb-4">Google Review Link Generator</h2>
+      <div class="form-control">
+        <label for="businessType" class="label">
+          <span class="label-text">Business Type:</span>
+        </label>
+        <select id="businessType" class="select select-bordered w-full">
+          <option value="business">Business</option>
+          <option value="person">Single Person</option>
+        </select>
+      </div>
       <form id="reviewForm" class="space-y-4">
         <div class="form-control">
           <label for="businessName" class="label">
-            <span class="label-text">Business Name:</span>
+            <span class="label-text">Business Name / Person Name:</span>
           </label>
           <input type="text" id="businessName" required class="input input-bordered w-full" placeholder="Enter Business Name">
         </div>
@@ -80,10 +89,13 @@
       const businessName = encodeURIComponent(document.getElementById('businessName').value);
       const reviewLink = encodeURIComponent(document.getElementById('reviewLink').value);
       const language = document.getElementById('language').value;
+      const businessType = document.getElementById('businessType').value;
       const host = window.location.host; //get the full url
       const protocol = window.location.protocol; //get the protocol
       const pathname = window.location.pathname; //get the pathname
-      const generatedLink = `${window.location}${language}/rate-me.html?business=${businessName}&url=${reviewLink}`;
+      // const generatedLink = `${window.location}/${language}/rate-me.html?business=${businessName}&url=${reviewLink}`;
+      let generatedLink = `${protocol}//${host}/${language}/rate-me.html?business=${businessName}&url=${reviewLink}&type=${businessType}`;
+      
       document.getElementById('result').innerHTML = `Generated Link: <a href="${generatedLink}" target="_blank">${generatedLink}</a>`;
       document.getElementById('copyButton').style.display = 'inline-block';
     });

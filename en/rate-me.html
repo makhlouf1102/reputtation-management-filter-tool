@@ -94,9 +94,12 @@
     // Get the business name from URL query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const businessName = urlParams.get('business') || 'Our Business';
-
-    // Update the h1 element with the business name
-    document.querySelector('h1').textContent = `Rate Your Experience at ${businessName}`;
+    const businessType = urlParams.get('type') || 'business';
+    if (businessType === 'person') {
+      document.querySelector('h1').textContent = `Rate Your Experience with ${businessName}`;
+    } else {
+      document.querySelector('h1').textContent = `Rate Your Experience at ${businessName}`;
+    }
 
     document.getElementById('ratingForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -105,7 +108,7 @@
         const reviewLink = urlParams.get('url');
         window.location.href = `${reviewLink}`;
       } else {
-        window.location.href = `rate-me-form.html?business='${businessName}'`;
+        window.location.href = `rate-me-form.html?business='${businessName}'&type='${businessType}'`;
       }
     });
   </script>
