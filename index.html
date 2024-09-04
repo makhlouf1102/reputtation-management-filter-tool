@@ -94,7 +94,7 @@
       const protocol = window.location.protocol; //get the protocol
       const pathname = window.location.pathname; //get the pathname
       // const generatedLink = `${window.location}/${language}/rate-me.html?business=${businessName}&url=${reviewLink}`;
-      let generatedLink = `${protocol}//${host}/${language}/rate-me.html?business=${businessName}&url=${reviewLink}&type=${businessType}`;
+      let generatedLink = `https://makhlouf1102.github.io/reputtation-management-filter-tool/${language}/rate-me.html?business=${businessName}&url=${reviewLink}&type=${businessType}`;
       
       document.getElementById('result').innerHTML = `Generated Link: <a href="${generatedLink}" target="_blank">${generatedLink}</a>`;
       document.getElementById('copyButton').style.display = 'inline-block';
